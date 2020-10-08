@@ -10,7 +10,7 @@ public class ItemDTO {
 	private float price;
 	private String state;
 	private LocalDate creationDate;
-	private Integer creator;
+	private UserDTO creator;
 	private Integer supplier;
 	private Integer priceReduction;
 	
@@ -55,10 +55,10 @@ public class ItemDTO {
 	public void setCreationDate(LocalDate creationDate) {
 		this.creationDate = creationDate;
 	}
-	public Integer getCreator() {
+	public UserDTO getCreator() {
 		return creator;
 	}
-	public void setCreator(Integer creator) {
+	public void setCreator(UserDTO creator) {
 		this.creator = creator;
 	}
 	public Integer getSupplier() {

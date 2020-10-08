@@ -1,11 +1,14 @@
 package com.prueba.bitbox.dto;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class UserDTO {
 	
 	private Integer idUser;
 	private String userName;
-	private String password;
-	private boolean isAdmin;
+	private String Password;
+	private Set<String> roles = new HashSet<>();
 	
 	
 	//Getters - Setters
@@ -22,18 +25,20 @@ public class UserDTO {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	
 	public String getPassword() {
-		return password;
+		return Password;
 	}
 	public void setPassword(String password) {
-		this.password = password;
+		Password = password;
 	}
-	public boolean isAdmin() {
-		return isAdmin;
+	public Set<String> getRoles() {
+		return roles;
 	}
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
+	public void setRoles(Set<String> roles) {
+		this.roles = roles;
 	}
+	
 	
 	
 }

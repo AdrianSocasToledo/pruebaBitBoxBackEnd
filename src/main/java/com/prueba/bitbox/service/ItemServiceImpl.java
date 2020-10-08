@@ -52,7 +52,7 @@ public class ItemServiceImpl implements IItemService{
 		
 		LocalDate currentDate = LocalDate.now();
 		Item item = new Item();
-		Integer idUser = requestItem.getCreator();
+		Integer idUser = requestItem.getCreator().getIdUser();
 		User creator = userRepository.getOne(idUser);
 		
 		item.setItemCode(requestItem.getItemCode());

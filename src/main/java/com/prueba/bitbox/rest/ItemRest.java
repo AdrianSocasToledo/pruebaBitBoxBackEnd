@@ -33,7 +33,6 @@ public class ItemRest {
 	
 	@GetMapping("/getItemById/{id}")
 	public Item getItemById(@PathVariable String id) {
-		System.out.println("Este es el ID -->"+id);
 		return itemService.getItemById(Integer.parseInt(id));
 	}
 	
@@ -47,9 +46,17 @@ public class ItemRest {
 		itemService.desactivateItem(desactivation);
 	}
 	
+
+	@PutMapping("/activateItem/{id}")
+	public void activateItem(@PathVariable String id) {
+		itemService.activateItem(Integer.parseInt(id));
+	}
+	
 	@PutMapping("/editItem")
 	public void editItem(@RequestBody ItemDTO item) {
 		itemService.updateItem(item);
 	}
+	
+	
 	
 }
