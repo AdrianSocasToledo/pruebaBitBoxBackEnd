@@ -39,7 +39,8 @@ public class User {
 		this.password = password;
 	}
 	
-	
+	public User() {	
+	}
 	//Getters - Setters
 
 	public Integer getIdUser() {

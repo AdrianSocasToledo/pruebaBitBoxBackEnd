@@ -68,10 +68,14 @@ public class AuthRest {
     	System.out.println(userDTO.getUserName()+"   Logeando con password: "+userDTO.getPassword());
         if(bindingResult.hasErrors())
             return new ResponseEntity("campos mal puestos", HttpStatus.BAD_REQUEST);
+        
         Authentication authentication =
                 authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userDTO.getUserName(),userDTO.getPassword()));
+        
+        
         SecurityContextHolder.getContext().setAuthentication(authentication);
-       
+        
+        System.out.println("Llegué!");
         String jwt = jwtProvider.generateToken(authentication);
         UserDetails userDetails = (UserDetails)authentication.getPrincipal();
         JwtDTO jwtDto = new JwtDTO(jwt, userDetails.getUsername(), userDetails.getAuthorities());

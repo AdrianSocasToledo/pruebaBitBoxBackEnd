@@ -53,7 +53,7 @@ public class ItemServiceImpl implements IItemService{
 		LocalDate currentDate = LocalDate.now();
 		Item item = new Item();
 		Integer idUser = requestItem.getCreator().getIdUser();
-		User creator = userRepository.getOne(idUser);
+		User creator = userRepository.findByUserName(requestItem.getCreator().getUserName()).get();
 		
 		item.setItemCode(requestItem.getItemCode());
 		item.setDescription(requestItem.getDescription());
@@ -71,7 +71,7 @@ public class ItemServiceImpl implements IItemService{
 		desactivationService.createDesactivation(desactivation);
 		
 		Item desactivatedItem = itemRepository.getOne(desactivation.getIdItem());
-		desactivatedItem.setState(" Discontinued");
+		desactivatedItem.setState("Discontinued");
 		itemRepository.save(desactivatedItem);
 		
 	}
