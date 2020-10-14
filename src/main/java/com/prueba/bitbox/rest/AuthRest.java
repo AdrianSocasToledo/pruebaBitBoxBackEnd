@@ -3,6 +3,7 @@ package com.prueba.bitbox.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -38,19 +39,20 @@ public class AuthRest {
     AuthenticationManager authenticationManager;
 
     @Autowired
-    UserServiceImpl usuarioService;
+    UserServiceImpl userService;
 
     @Autowired
     RoleServiceImpl roleService;
 
     @Autowired
     JwtProvider jwtProvider;
-
+    
+    @PreAuthorize("hasRole('Admin')")
     @PostMapping("/registerUser")
     public ResponseEntity<?> nuevo(@Validated @RequestBody UserDTO userDTO, BindingResult bindingResult){
         if(bindingResult.hasErrors())
             return new ResponseEntity("campos mal puestos o email inválido", HttpStatus.BAD_REQUEST);
-        if(usuarioService.existsByUserName(userDTO.getUserName()))
+        if(userService.existsByUserName(userDTO.getUserName()))
             return new ResponseEntity("El usuario ya existe", HttpStatus.BAD_REQUEST);
         
         User user =  new User(userDTO.getUserName(), passwordEncoder.encode(userDTO.getPassword()));
@@ -59,13 +61,13 @@ public class AuthRest {
         if(userDTO.getRoles().contains("admin"))
             roles.add(roleService.getByRoleName(RoleName.ROLE_ADMIN));
         user.setRoles(roles);
-        usuarioService.save(user);
+        userService.save(user);
         return new ResponseEntity("usuario guardado", HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
     public ResponseEntity<JwtDTO> login( @RequestBody LoginDTO userDTO, BindingResult bindingResult){
-    	System.out.println(userDTO.getUserName()+"   Logeando con password: "+userDTO.getPassword());
+    	
         if(bindingResult.hasErrors())
             return new ResponseEntity("campos mal puestos", HttpStatus.BAD_REQUEST);
         
@@ -75,11 +77,17 @@ public class AuthRest {
         
         SecurityContextHolder.getContext().setAuthentication(authentication);
         
-        System.out.println("Llegué!");
         String jwt = jwtProvider.generateToken(authentication);
         UserDetails userDetails = (UserDetails)authentication.getPrincipal();
         JwtDTO jwtDto = new JwtDTO(jwt, userDetails.getUsername(), userDetails.getAuthorities());
         return new ResponseEntity(jwtDto, HttpStatus.OK);
+    }
+    
+    @PreAuthorize("hasRole('Admin')")
+    @DeleteMapping("/deleteUser")
+    public ResponseEntity<String> delete(@RequestBody String nameUser){
+    	userService.delete(nameUser);
+    	return ResponseEntity.accepted().body("User "+nameUser+" was deleted");
     }
 }
 

@@ -2,7 +2,10 @@ package com.prueba.bitbox.rest;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,36 +30,46 @@ public class ItemRest {
 	private IItemService itemService;
 	
 	@GetMapping("/getItems")
-	public List<Item> getItems(){
-		return itemService.getItems();
+	public ResponseEntity<List<Item>> getItems(){
+		return ResponseEntity.accepted().body(itemService.getItems());
 	}
 	
 	@GetMapping("/getItemById/{id}")
-	public Item getItemById(@PathVariable String id) {
-		return itemService.getItemById(Integer.parseInt(id));
+	public ResponseEntity<Item> getItemById(@PathVariable String id) {
+		return ResponseEntity.accepted().body(itemService.getItemById(Integer.parseInt(id)));
 	}
 	
 	@PostMapping("/createItem")
-	public void createItem(@RequestBody ItemDTO item) {
+	public ResponseEntity<String> createItem(@RequestBody ItemDTO item) {
+		
 		itemService.createItem(item);
+		return ResponseEntity.accepted().body(" Item was created");
 	}
 	
 	@PutMapping("/desactivateItem")
-	public void desactivateItem(@RequestBody DesactivationDTO desactivation) {
+	public ResponseEntity<String> desactivateItem(@RequestBody DesactivationDTO desactivation) {
 		itemService.desactivateItem(desactivation);
+		return ResponseEntity.accepted().body(" item was desactivated");
 	}
 	
 
 	@PutMapping("/activateItem/{id}")
-	public void activateItem(@PathVariable String id) {
+	public ResponseEntity<String> activateItem(@PathVariable String id) {
 		itemService.activateItem(Integer.parseInt(id));
+		return ResponseEntity.accepted().body(" item was activated");
 	}
 	
 	@PutMapping("/editItem")
-	public void editItem(@RequestBody ItemDTO item) {
+	public ResponseEntity<String> editItem(@RequestBody ItemDTO item) {
 		itemService.updateItem(item);
+		return ResponseEntity.accepted().body("item was edited");
 	}
 	
-	
+	@PreAuthorize("hasRole('Admin')")
+	@DeleteMapping("/deleteItem")
+	public ResponseEntity<String> deleteItem(@RequestBody String id){
+		itemService.deleteItem(Integer.parseInt(id));
+		return ResponseEntity.accepted().body(" item id:"+id+" was deleted");
+	}
 	
 }

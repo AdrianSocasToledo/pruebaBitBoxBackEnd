@@ -19,4 +19,6 @@ public interface IItemService {
 	void activateItem(Integer id);
 	
 	void updateItem(ItemDTO item);
+	
+	void deleteItem(Integer id);
 }

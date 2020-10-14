@@ -11,22 +11,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.prueba.bitbox.dto.SupplierDTO;
-import com.prueba.bitbox.service.SupplierServiceImpl;
+import com.prueba.bitbox.dto.PriceReductionDTO;
+import com.prueba.bitbox.service.PriceReductionServiceImpl;
+
 
 @RestController
 @CrossOrigin(origins="*",methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
-@RequestMapping("suppliers")
-public class SupplierRest {
+@RequestMapping("priceReductions")
+public class PriceReductionRest {
 	
 	@Autowired
-	SupplierServiceImpl supplierService;
+	PriceReductionServiceImpl priceReductionService;
 	
-	@GetMapping("/getSuppliers")
-	public ResponseEntity<List<SupplierDTO>> getSuppliers(){
+	@GetMapping("/getPriceReductions")
+	public ResponseEntity<List<PriceReductionDTO>> getItems(){
 		HttpHeaders headers = new HttpHeaders();
-		List<SupplierDTO> suppliers = supplierService.getSuppliers();
-		return ResponseEntity.accepted().headers(headers).body(suppliers);
+		List<PriceReductionDTO> priceReductions = priceReductionService.getPricesReductions();
+		return ResponseEntity.accepted().headers(headers).body(priceReductions);
 	}
 
 }

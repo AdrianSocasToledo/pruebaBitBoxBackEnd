@@ -34,4 +34,9 @@ public class UserServiceImpl implements IUserService {
 		
 	}
 	
+	public void delete(String name) {
+		User user = userRepository.findByUserName(name).get();
+		userRepository.delete(user);
+	}
+	
 }
