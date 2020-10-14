@@ -14,7 +14,29 @@ public class UserServiceImpl implements IUserService {
 	
 	@Override
 	public User getUserById(Integer id) {
-		return userRepository.getOne(id);
+		return userRepository.findById(id).get();
+	}
+
+	@Override
+	public User getUserByUserName(String userName) {
+	
+		return userRepository.findByUserName(userName).get();
+	}
+
+	@Override
+	public boolean existsByUserName(String userName) {
+		return userRepository.existsByUserName(userName);
+	}
+
+	@Override
+	public void save(User user) {
+		userRepository.save(user);
+		
+	}
+	
+	public void delete(String name) {
+		User user = userRepository.findByUserName(name).get();
+		userRepository.delete(user);
 	}
 	
 }

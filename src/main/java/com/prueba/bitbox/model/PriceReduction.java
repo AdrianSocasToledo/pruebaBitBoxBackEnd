@@ -18,37 +18,31 @@ public class PriceReduction {
 	private Integer idPriceReduction;
 	
 	@Column
+	private Integer reducedPrice;
+	
+	@Column
 	private LocalDate startDate;
 	
 	@Column
 	private LocalDate endDate;
 	
-	@ManyToOne
-	@JoinColumn(name = " idItem")
-	private Item item;
-	
-	@ManyToOne
-	@JoinColumn(name = " idUser")
-	private User creator;
+	public PriceReduction() {
+		
+	}
 	
 	
+
 	//Gettes - Setters
 
-	public Item getItem() {
-		return item;
+
+	public PriceReduction(Integer reducedPrice, LocalDate startDate, LocalDate endDate) {
+		super();
+		this.reducedPrice = reducedPrice;
+		this.startDate = startDate;
+		this.endDate = endDate;
 	}
 
-	public void setItem(Item item) {
-		this.item = item;
-	}
 
-	public User getCreator() {
-		return creator;
-	}
-
-	public void setCreator(User creator) {
-		this.creator = creator;
-	}
 
 	public Integer getIdPriceReduction() {
 		return idPriceReduction;
@@ -72,6 +66,14 @@ public class PriceReduction {
 
 	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
+	}
+
+	public Integer getReducedPrice() {
+		return reducedPrice;
+	}
+
+	public void setReducedPrice(Integer reducedPrice) {
+		this.reducedPrice = reducedPrice;
 	}
 	
 	

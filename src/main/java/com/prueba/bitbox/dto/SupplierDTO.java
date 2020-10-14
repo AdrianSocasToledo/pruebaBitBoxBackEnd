@@ -6,7 +6,12 @@ public class SupplierDTO {
 	private String name;
 	private String country;
 	
-	
+public SupplierDTO(Integer idSupplier, String name, String country) {
+		super();
+		this.idSupplier = idSupplier;
+		this.name = name;
+		this.country = country;
+	}
 	//Getters - Setters
 	
 	public Integer getIdSupplier() {

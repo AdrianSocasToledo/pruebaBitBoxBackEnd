@@ -22,10 +22,10 @@ public class Item {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idItem;
 	
-	@Column
+	@Column(unique=true)
 	private String itemCode;
 	
-	@Column
+	@Column(nullable=false)
 	private String description;
 	
 	@Column 
@@ -37,7 +37,12 @@ public class Item {
 	@Column
 	private LocalDate creationDate;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
+	@JoinTable(
+			name = "rel_items_priceReduction",
+			joinColumns = @JoinColumn(name="idItem",nullable=false),
+			inverseJoinColumns = @JoinColumn(name="idPriceReduction",nullable = false) 
+	)
+	@ManyToMany(cascade = CascadeType.ALL)
 	private List<PriceReduction> priceReduction; 
 	
 	@ManyToOne(optional=false, cascade = CascadeType.ALL)
@@ -46,7 +51,7 @@ public class Item {
 	
 	@JoinTable(
 			name = "rel_items_suppliers",
-			joinColumns = @JoinColumn(name="itemCode",nullable=false),
+			joinColumns = @JoinColumn(name="idItem",nullable=false),
 			inverseJoinColumns = @JoinColumn(name="idSupplier",nullable = false) 
 	)
 	@ManyToMany(cascade = CascadeType.ALL)

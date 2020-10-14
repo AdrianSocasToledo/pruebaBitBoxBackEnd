@@ -20,7 +20,20 @@ public class Supplier {
 	private String country;
 
 	
+	
+	
+	
+	public Supplier() {
+	}
+
+	public Supplier(String name, String country) {
+		super();
+		this.name = name;
+		this.country = country;
+	}
+
 	//Getters - Setters
+	
 	
 	public Integer getIdSupplier() {
 		return idSupplier;

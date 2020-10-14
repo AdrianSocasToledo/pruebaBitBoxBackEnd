@@ -5,13 +5,19 @@ import java.time.LocalDate;
 public class PriceReductionDTO {
 	
 	private Integer idPriceReduction;
+	private Integer reducedPrice;
 	private LocalDate startDate;
 	private LocalDate endDate;
-	private Integer idItem;
-	private Integer idUser;
 	
 	
 	
+	public PriceReductionDTO(Integer idPriceReduction, Integer reducedPrice,LocalDate startDate, LocalDate endDate) {
+		super();
+		this.idPriceReduction = idPriceReduction;
+		this.reducedPrice = reducedPrice;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
 	//Getters - Setters
 	
 	public Integer getIdPriceReduction() {
@@ -32,17 +38,13 @@ public class PriceReductionDTO {
 	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
-	public Integer getIdItem() {
-		return idItem;
+
+	public Integer getReducedPrice() {
+		return reducedPrice;
 	}
-	public void setIdItem(Integer idItem) {
-		this.idItem = idItem;
-	}
-	public Integer getIdUser() {
-		return idUser;
-	}
-	public void setIdUser(Integer idUser) {
-		this.idUser = idUser;
+
+	public void setReducedPrice(Integer reducedPrice) {
+		this.reducedPrice = reducedPrice;
 	}
 	
 	

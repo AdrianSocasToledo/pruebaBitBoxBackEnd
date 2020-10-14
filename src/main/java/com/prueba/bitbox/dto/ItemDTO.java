@@ -1,6 +1,10 @@
 package com.prueba.bitbox.dto;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class ItemDTO {
 	
@@ -10,9 +14,9 @@ public class ItemDTO {
 	private float price;
 	private String state;
 	private LocalDate creationDate;
-	private Integer creator;
-	private Integer supplier;
-	private Integer priceReduction;
+	private UserDTO creator;
+	private Set<SupplierDTO> suppliers = new HashSet<>();
+	private Set<PriceReductionDTO> priceReduction = new HashSet<>();
 	
 	
 	//Getters - Setters
@@ -55,22 +59,22 @@ public class ItemDTO {
 	public void setCreationDate(LocalDate creationDate) {
 		this.creationDate = creationDate;
 	}
-	public Integer getCreator() {
+	public UserDTO getCreator() {
 		return creator;
 	}
-	public void setCreator(Integer creator) {
+	public void setCreator(UserDTO creator) {
 		this.creator = creator;
 	}
-	public Integer getSupplier() {
-		return this.supplier;
+	public Set<SupplierDTO> getSuppliers() {
+		return suppliers;
 	}
-    public void setSupplier(Integer supplier) {
-    	this.supplier= supplier;
-    }
-	public Integer getPriceReduction() {
+	public void setSuppliers(Set<SupplierDTO> suppliers) {
+		this.suppliers = suppliers;
+	}
+	public Set<PriceReductionDTO> getPriceReduction() {
 		return priceReduction;
 	}
-	public void setPriceReduction(Integer priceReduction) {
+	public void setPriceReduction(Set<PriceReductionDTO> priceReduction) {
 		this.priceReduction = priceReduction;
 	}
 	
