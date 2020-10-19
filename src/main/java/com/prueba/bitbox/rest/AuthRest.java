@@ -47,7 +47,7 @@ public class AuthRest {
     @Autowired
     JwtProvider jwtProvider;
     
-    @PreAuthorize("hasRole('Admin')")
+    //@PreAuthorize("hasRole('Admin')")
     @PostMapping("/registerUser")
     public ResponseEntity<?> nuevo(@Validated @RequestBody UserDTO userDTO, BindingResult bindingResult){
         if(bindingResult.hasErrors())

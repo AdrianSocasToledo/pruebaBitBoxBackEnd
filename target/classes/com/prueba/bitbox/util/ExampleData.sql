@@ -1,0 +1,17 @@
+insert into suppliers(country,name) values('Spain','supplier1');
+insert into suppliers(country,name) values('Spain','supplier2');
+insert into suppliers(country,name) values('Sweden','supplier3');
+insert into price_reductions(reduced_price,start_date,end_date) values('10%','2020-10-16','2020-10-20');
+insert into price_reductions(reduced_price,start_date,end_date) values('15%','2020-10-22','2020-10-30');
+insert into price_reductions(reduced_price,start_date,end_date) values('20%','2020-10-18','2020-10-22');
+insert into items(description,item_code,price,state,id_user,creation_date) values ('Table','001A',99.99,'Active',1,'2020-10-16');
+insert into items(description,item_code,price,state,id_user,creation_date) values ('Bed','001B',399.99,'Active',1,'2020-10-16');
+insert into items(description,item_code,price,state,id_user,creation_date) values ('Chair','001C',49.99,'Active',1,'2020-10-16');
+insert into items(description,item_code,price,state,id_user,creation_date) values ('Carpet','001D',19.99,'Discontinued',1,'2020-10-16');
+insert into rel_items_suppliers(id_item,id_supplier) values(1,1);
+insert into rel_items_suppliers(id_item,id_supplier) values(1,2);
+insert into rel_items_suppliers(id_item,id_supplier) values(2,3);
+insert into rel_items_suppliers(id_item,id_supplier) values(4,2);
+insert into rel_items_price_reduction(id_item,id_price_reduction) values(1,1);
+insert into rel_items_price_reduction(id_item,id_price_reduction) values(2,2);
+insert into rel_items_price_reduction(id_item,id_price_reduction) values(3,3);

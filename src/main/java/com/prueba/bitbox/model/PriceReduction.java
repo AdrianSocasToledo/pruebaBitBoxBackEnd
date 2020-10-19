@@ -16,7 +16,7 @@ public class PriceReduction {
 	private Integer idPriceReduction;
 	
 	@Column
-	private Integer reducedPrice;
+	private String reducedPrice;
 	
 	@Column
 	private LocalDate startDate;
@@ -33,7 +33,7 @@ public class PriceReduction {
 	//Gettes - Setters
 
 
-	public PriceReduction(Integer reducedPrice, LocalDate startDate, LocalDate endDate) {
+	public PriceReduction(String reducedPrice, LocalDate startDate, LocalDate endDate) {
 		super();
 		this.reducedPrice = reducedPrice;
 		this.startDate = startDate;
@@ -66,11 +66,11 @@ public class PriceReduction {
 		this.endDate = endDate;
 	}
 
-	public Integer getReducedPrice() {
+	public String getReducedPrice() {
 		return reducedPrice;
 	}
 
-	public void setReducedPrice(Integer reducedPrice) {
+	public void setReducedPrice(String reducedPrice) {
 		this.reducedPrice = reducedPrice;
 	}
 	

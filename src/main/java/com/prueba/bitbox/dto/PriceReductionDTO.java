@@ -5,13 +5,13 @@ import java.time.LocalDate;
 public class PriceReductionDTO {
 	
 	private Integer idPriceReduction;
-	private Integer reducedPrice;
+	private String reducedPrice;
 	private LocalDate startDate;
 	private LocalDate endDate;
 	
 	
 	
-	public PriceReductionDTO(Integer idPriceReduction, Integer reducedPrice,LocalDate startDate, LocalDate endDate) {
+	public PriceReductionDTO(Integer idPriceReduction, String reducedPrice,LocalDate startDate, LocalDate endDate) {
 		super();
 		this.idPriceReduction = idPriceReduction;
 		this.reducedPrice = reducedPrice;
@@ -39,11 +39,11 @@ public class PriceReductionDTO {
 		this.endDate = endDate;
 	}
 
-	public Integer getReducedPrice() {
+	public String getReducedPrice() {
 		return reducedPrice;
 	}
 
-	public void setReducedPrice(Integer reducedPrice) {
+	public void setReducedPrice(String reducedPrice) {
 		this.reducedPrice = reducedPrice;
 	}
 	
